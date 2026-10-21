@@ -1,5 +1,6 @@
 <script>
 	import Button from '#lib/Button.svelte';
+	import Contact from '#lib/Contact.svelte';
 	import { onMount } from 'svelte';
 	import { invalidate } from '$app/navigation';
 
@@ -44,12 +45,12 @@
 	</header>
 
 	<main id="main">
-		<p class="eyebrow">Curiosity is the only prerequisite.</p>
+		<p class="eyebrow">Curiosity is the only prerequisite</p>
 		<h1>Neuroscience,<br />Health <span class="ampersand">&</span><br />Ethics Club</h1>
 		<p>A discussion club for students of every major who are curious about the brain, health, and the ethical questions that come with modern medicine and science.</p>
 		<p>Open to any student enrolled in at least one ACC course. No dues. No science background needed.</p>
 
-		<Button href="#join">Sign up here!</Button>
+		<!-- <Button href="#join">Sign up here!</Button> -->
 		<p id="join" class="signup-note" tabindex="-1">Our online signup link is coming soon. In the meantime, you're welcome at an upcoming meeting.</p>
 
 		<aside class="upcoming-event" aria-labelledby="event-heading">
@@ -77,6 +78,13 @@
 		</aside>
 
 		<p class="schedule-note">We're tentatively planning to meet every other week during fall and spring, in person at Hays. Future dates, rooms, and a possible virtual option are still to be decided.</p>
+
+		<section class="contacts" aria-labelledby="contact-heading">
+			<h2 id="contact-heading">Contact us</h2>
+			<Contact name="Christopher Dunn" title="President" email="chirstopher.dunn@g.austincc.edu" />
+			<Contact name="Sarah Powell" title="Vice President" email="sarah.powell2@g.austincc.edu" />
+			<Contact name="Vincent Morales" title="Secretary" email="vincent.morales2@g.austincc.edu" />
+		</section>
 	</main>
 
 	<footer>
