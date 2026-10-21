@@ -45,46 +45,50 @@
 	</header>
 
 	<main id="main">
-		<p class="eyebrow">Curiosity is the only prerequisite</p>
-		<h1>Neuroscience,<br />Health <span class="ampersand">&</span><br />Ethics Club</h1>
-		<p>A discussion club for students of every major who are curious about the brain, health, and the ethical questions that come with modern medicine and science.</p>
-		<p>Open to any student enrolled in at least one ACC course. No dues. No science background needed.</p>
+		<div class="main-column">
+			<p class="eyebrow">Curiosity is the only prerequisite</p>
+			<h1>Neuroscience,<br />Health <span class="ampersand">&</span><br />Ethics Club</h1>
+			<p>A discussion club for students of every major who are curious about the brain, health, and the ethical questions that come with modern medicine and science.</p>
+			<p>Open to any student enrolled in at least one ACC course. No dues. No science background needed.</p>
 
-		<!-- <Button href="#join">Sign up here!</Button> -->
-		<p id="join" class="signup-note" tabindex="-1">Our online signup link is coming soon. In the meantime, you're welcome at an upcoming meeting.</p>
+			<!-- <Button href="#join">Sign up here!</Button> -->
+			<p id="join" class="signup-note" tabindex="-1">Our online signup link is coming soon. In the meantime, you're welcome at an upcoming meeting.</p>
+		</div>
 
-		<aside class="upcoming-event" aria-labelledby="event-heading">
-			<p class="eyebrow" id="event-heading">Upcoming event</p>
-			{#if data.nextEvent}
-				<h2>{data.nextEvent.title}</h2>
-				<p class="event-date">
-					<time datetime={data.nextEvent.start}>{data.nextEvent.date}</time>
-					{#if data.nextEvent.endDate} – {data.nextEvent.endDate}{/if}
-				</p>
-				{#if data.nextEvent.allDay}
-					<p>All day</p>
+		<div class="secondary-column">
+			<aside class="upcoming-event" aria-labelledby="event-heading">
+				<p class="eyebrow" id="event-heading">Upcoming event</p>
+				{#if data.nextEvent}
+					<h2>{data.nextEvent.title}</h2>
+					<p class="event-date">
+						<time datetime={data.nextEvent.start}>{data.nextEvent.date}</time>
+						{#if data.nextEvent.endDate} – {data.nextEvent.endDate}{/if}
+					</p>
+					{#if data.nextEvent.allDay}
+						<p>All day</p>
+					{:else}
+						<p><time datetime={data.nextEvent.start}>{data.nextEvent.startTime}</time> to <time datetime={data.nextEvent.end}>{data.nextEvent.endTime}</time></p>
+					{/if}
+					{#if data.nextEvent.location}<p>{data.nextEvent.location}</p>{/if}
+					{#if data.nextEvent.description}
+						<p>{#each data.nextEvent.description.split('\n') as line, index}{#if index > 0}<br />{/if}{line}{/each}</p>
+					{/if}
+				{:else if data.calendarUnavailable}
+					<p>We couldn't load the calendar right now. Please check back soon.</p>
 				{:else}
-					<p><time datetime={data.nextEvent.start}>{data.nextEvent.startTime}</time> to <time datetime={data.nextEvent.end}>{data.nextEvent.endTime}</time></p>
+					<p>No upcoming events are scheduled. Check back soon for our next meeting.</p>
 				{/if}
-				{#if data.nextEvent.location}<p>{data.nextEvent.location}</p>{/if}
-				{#if data.nextEvent.description}
-					<p>{#each data.nextEvent.description.split('\n') as line, index}{#if index > 0}<br />{/if}{line}{/each}</p>
-				{/if}
-			{:else if data.calendarUnavailable}
-				<p>We couldn't load the calendar right now. Please check back soon.</p>
-			{:else}
-				<p>No upcoming events are scheduled. Check back soon for our next meeting.</p>
-			{/if}
-		</aside>
+			</aside>
 
-		<p class="schedule-note">We're tentatively planning to meet every other week during fall and spring, in person at Hays. Future dates, rooms, and a possible virtual option are still to be decided.</p>
+			<p class="schedule-note">We're tentatively planning to meet every other week during fall and spring, in person at Hays. Future dates, rooms, and a possible virtual option are still to be decided.</p>
 
-		<section class="contacts" aria-labelledby="contact-heading">
-			<h2 id="contact-heading">Contact us</h2>
-			<Contact name="Christopher Dunn" title="President" email="chirstopher.dunn@g.austincc.edu" />
-			<Contact name="Sarah Powell" title="Vice President" email="sarah.powell2@g.austincc.edu" />
-			<Contact name="Vincent Morales" title="Secretary" email="vincent.morales2@g.austincc.edu" />
-		</section>
+			<section class="contacts" aria-labelledby="contact-heading">
+				<h2 id="contact-heading">Contact us</h2>
+				<Contact name="Christopher Dunn" title="President" email="chirstopher.dunn@g.austincc.edu" />
+				<Contact name="Sarah Powell" title="Vice President" email="sarah.powell2@g.austincc.edu" />
+				<Contact name="Vincent Morales" title="Secretary" email="vincent.morales2@g.austincc.edu" />
+			</section>
+		</div>
 	</main>
 
 	<footer>

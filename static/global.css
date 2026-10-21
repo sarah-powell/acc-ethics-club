@@ -241,3 +241,27 @@ footer a {
 	opacity: 0.55;
 	cursor: not-allowed;
 }
+
+@media (min-width: 800px) {
+	.page {
+		max-width: 1040px;
+		padding: 0 40px;
+	}
+
+	main {
+		display: grid;
+		grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+		gap: 48px;
+		align-items: start;
+		padding: 40px 0;
+	}
+
+	.secondary-column {
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.secondary-column .upcoming-event {
+		margin-top: 0;
+	}
+}
