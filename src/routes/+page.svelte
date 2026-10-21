@@ -29,7 +29,7 @@
 </script>
 
 <svelte:head>
-	<title>NHE Club | ACC Hays Campus</title>
+	<title>NHE Club</title>
 	<meta
 		name="description"
 		content="A discussion club at Austin Community College's Hays Campus for students curious about the brain, health, and ethics. All majors welcome. No dues or science background needed."
