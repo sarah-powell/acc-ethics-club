@@ -1,0 +1,18 @@
+services:
+  nhe-club:
+    container_name: nhe-club
+    image: ghcr.io/sarah-powell/acc-ethics-club:latest
+    env_file:
+      - .env
+    environment:
+      PORT: 3000
+      HOST: 0.0.0.0
+    ports:
+      - "127.0.0.1:8081:3000"
+    restart: unless-stopped
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

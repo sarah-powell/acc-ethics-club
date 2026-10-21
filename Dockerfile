@@ -1,5 +1,5 @@
-# Build the SvelteKit app
 FROM node:22-alpine AS build
+
 WORKDIR /app
 
 COPY package*.json ./
@@ -8,10 +8,19 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# Serve the static site with Nginx
-FROM nginx:alpine
+FROM node:22-alpine
 
-COPY --from=build /app/build /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app
 
-EXPOSE 80
+COPY --from=build /app/build ./build
+COPY --from=build /app/package*.json ./
+
+RUN npm ci --omit=dev
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOST=0.0.0.0
+
+EXPOSE 3000
+
+CMD ["node", "build"]
