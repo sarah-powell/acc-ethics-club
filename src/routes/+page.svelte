@@ -1,5 +1,31 @@
 <script>
 	import Button from '#lib/Button.svelte';
+	import { onMount } from 'svelte';
+	import { invalidate } from '$app/navigation';
+
+	let { data } = $props();
+
+	onMount(() => {
+		// Re-run the server load for visitors who leave this page open.
+		let refreshing = false;
+		async function refreshCalendar() {
+			if (document.hidden || refreshing) return;
+			refreshing = true;
+			try {
+				await invalidate('club:calendar');
+			} catch {
+				// A disconnected browser retries on the next interval or tab focus.
+			} finally {
+				refreshing = false;
+			}
+		}
+		const timer = setInterval(refreshCalendar, 5 * 60 * 1000);
+		document.addEventListener('visibilitychange', refreshCalendar);
+		return () => {
+			clearInterval(timer);
+			document.removeEventListener('visibilitychange', refreshCalendar);
+		};
+	});
 </script>
 
 <svelte:head>
@@ -24,12 +50,30 @@
 		<p>Open to any student enrolled in at least one ACC course. No dues. No science background needed.</p>
 
 		<Button href="#join">Sign up here!</Button>
-		<p id="join" class="signup-note" tabindex="-1">Our online signup link is coming soon. In the meantime, you're welcome at our first meeting.</p>
+		<p id="join" class="signup-note" tabindex="-1">Our online signup link is coming soon. In the meantime, you're welcome at an upcoming meeting.</p>
 
 		<aside class="upcoming-event" aria-labelledby="event-heading">
-			<p class="eyebrow">Upcoming event</p>
-			<p class="event-date"><time datetime="2026-10-22">Thursday, October 22, 2026</time></p>
-			<p>11:00 a.m. to 12:00 p.m.<br />Hays Campus library (meeting room next to outdoor patio)</p>
+			<p class="eyebrow" id="event-heading">Upcoming event</p>
+			{#if data.nextEvent}
+				<h2>{data.nextEvent.title}</h2>
+				<p class="event-date">
+					<time datetime={data.nextEvent.start}>{data.nextEvent.date}</time>
+					{#if data.nextEvent.endDate} – {data.nextEvent.endDate}{/if}
+				</p>
+				{#if data.nextEvent.allDay}
+					<p>All day</p>
+				{:else}
+					<p><time datetime={data.nextEvent.start}>{data.nextEvent.startTime}</time> to <time datetime={data.nextEvent.end}>{data.nextEvent.endTime}</time></p>
+				{/if}
+				{#if data.nextEvent.location}<p>{data.nextEvent.location}</p>{/if}
+				{#if data.nextEvent.description}
+					<p>{#each data.nextEvent.description.split('\n') as line, index}{#if index > 0}<br />{/if}{line}{/each}</p>
+				{/if}
+			{:else if data.calendarUnavailable}
+				<p>We couldn't load the calendar right now. Please check back soon.</p>
+			{:else}
+				<p>No upcoming events are scheduled. Check back soon for our next meeting.</p>
+			{/if}
 		</aside>
 
 		<p class="schedule-note">We're tentatively planning to meet every other week during fall and spring, in person at Hays. Future dates, rooms, and a possible virtual option are still to be decided.</p>
@@ -38,6 +82,5 @@
 	<footer>
 		<p class="footer-name">NHE Club</p>
 		<p>Neuroscience, Health & Ethics Club<br />Austin Community College · Hays Campus</p>
-		<a href="#top">Back to top ↑</a>
 	</footer>
 </div>
