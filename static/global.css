@@ -48,8 +48,19 @@ a:focus-visible {
 }
 
 header {
+	display: flex;
+	align-items: center;
+	gap: 16px;
 	padding: 26px 0 18px;
 	border-bottom: 1px solid #cbcfc1;
+}
+
+.header-logo {
+	display: block;
+	width: 64px;
+	height: 64px;
+	object-fit: contain;
+	flex-shrink: 0;
 }
 
 .wordmark {

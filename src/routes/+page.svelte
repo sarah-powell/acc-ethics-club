@@ -1,4 +1,5 @@
 <script>
+	import logo from '#lib/assets/icon-192.png';
 	import Button from '#lib/Button.svelte';
 	import Contact from '#lib/Contact.svelte';
 	import { onMount } from 'svelte';
@@ -40,14 +41,17 @@
 <div class="page" id="top">
 	<a class="skip-link" href="#main">Skip to content</a>
 	<header>
-		<a class="wordmark" href="#top" aria-label="NHE Club home">NHE<span class="wordmark-dot">.</span> <span class="club">CLUB</span></a>
-		<p>Austin Community College · Hays Campus</p>
+		<img class="header-logo" src={logo} alt="" width="64" height="64" />
+		<div>
+			<a class="wordmark" href="#top" aria-label="NHE Club home">NHE <span class="club">CLUB</span></a>
+			<p>Austin Community College</p>
+		</div>
 	</header>
 
 	<main id="main">
 		<div class="main-column">
 			<p class="eyebrow">Curiosity is the only prerequisite</p>
-			<h1>Neuroscience,<br />Health <span class="ampersand">&</span><br />Ethics Club</h1>
+			<h1>Neuroscience, Health <span class="ampersand">&</span><br />Ethics Club</h1>
 			<p>A discussion club for students of every major who are curious about the brain, health, and the ethical questions that come with modern medicine and science.</p>
 			<p>Open to any student enrolled in at least one ACC course. No dues. No science background needed.</p>
 
