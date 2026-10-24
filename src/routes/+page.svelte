@@ -55,8 +55,7 @@
 			<p>A discussion club for students of every major who are curious about the brain, health, and the ethical questions that come with modern medicine and science.</p>
 			<p>Open to any student enrolled in at least one ACC course. No dues. No science background needed.</p>
 
-			<!-- <Button href="#join">Sign up here!</Button> -->
-			<p id="join" class="signup-note" tabindex="-1">Our online signup link is coming soon. In the meantime, you're welcome at an upcoming meeting.</p>
+			<Button href="https://austincc.campuslabs.com/engage/organization/nhe" target="_blank">Sign up here!</Button>
 		</div>
 
 		<div class="secondary-column">
