@@ -6,6 +6,7 @@
 	import { invalidate } from '$app/navigation';
 
 	let { data } = $props();
+	let description = 'A weekly discussion club at Austin Community College\'s Hays Campus for students curious about the brain, health, and ethics. All majors welcome. No dues or science background needed.';
 
 	onMount(() => {
 		// Re-run the server load for visitors who leave this page open.
@@ -34,7 +35,7 @@
 	<title>NHE Club</title>
 	<meta
 		name="description"
-		content="A discussion club at Austin Community College's Hays Campus for students curious about the brain, health, and ethics. All majors welcome. No dues or science background needed."
+		content={description}
 	/>
 </svelte:head>
 
@@ -52,8 +53,8 @@
 		<div class="main-column">
 			<p class="eyebrow">Curiosity is the only prerequisite</p>
 			<h1>Neuroscience, Health <span class="ampersand">&</span><br />Ethics Club</h1>
-			<p>A discussion club for students of every major who are curious about the brain, health, and the ethical questions that come with modern medicine and science.</p>
-			<p>Open to any student enrolled in at least one ACC course. No dues. No science background needed.</p>
+			<p>{description}</p>
+			<p>Open to any student enrolled in at least one ACC course. No dues or science background needed.</p>
 
 			<Button href="https://austincc.campuslabs.com/engage/organization/nhe" target="_blank">Sign up here!</Button>
 		</div>
@@ -83,7 +84,7 @@
 				{/if}
 			</aside>
 
-			<p class="schedule-note">We're tentatively planning to meet every other week during fall and spring, in person at Hays. Future dates, rooms, and a possible virtual option are still to be decided.</p>
+			<p class="schedule-note">We meet every week during fall and spring semesters at the Hays campus.</p>
 
 			<section class="contacts" aria-labelledby="contact-heading">
 				<h2 id="contact-heading">Contact us</h2>
